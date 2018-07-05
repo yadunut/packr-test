@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/yadunut/test-packr/http"
+	"github.com/yadunut/packr-test/http"
 )
 
 func main() {
