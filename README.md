@@ -8,7 +8,13 @@ This repository was created to test out an error I got when using packr.
 go get -d github.com/yadunut/packr-test/...
 ```
 
-## To test issue
+or 
+
+```
+git clone https://github.com/yadunut/packr-test
+```
+
+## No Issues
 
 ```bash
 cd packr-test
@@ -19,29 +25,61 @@ packr build cmd/server/main.go
 ### Expected
 
 ```
-<h1>SMA Website</h1>
-
-<h2>World</h1>
+Init Function
+2 files in ./templates
+ListFiles function
+Files in box:
+index.tmpl
+register.tmpl
 ```
+
+### Actual
+
+```
+Init Function
+2 files in ./templates
+ListFiles function
+Files in box:
+index.tmpl
+register.tmpl
+```
+
+## Issues
+
+Changed the path to the repository
 
 ```bash
 cd ..
 mv packr-test packr-tests
 cd packr-tests
 ./main
+cd ..
+mv packr-tests packr-test
+cd packr-test
 ```
 
 ### Expected
 
 ```
-<h1>SMA Website</h1>
-
-<h2>World</h1>
+2 files in ./templates
+Files in box:
+index.tmpl
+register.tmpl
 ```
 
 ### Actual
 
 ```
+Init Function
 0 files in ./templates
-error parsing template: html/template: "index.tmpl" is undefined
+ListFiles function
+Files in box:
+index.tmpl
+register.tmpl
 ```
+
+## What Happened?
+
+The init function doesn't detect files in the binary, but detects files when they're in the folders. 
+
+Outside of the init function, there are no issues. 

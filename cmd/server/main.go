@@ -1,11 +1,11 @@
 package main
 
 import (
-	"os"
+	"fmt"
 
 	"github.com/yadunut/packr-test/http"
 )
 
 func main() {
-	http.RenderTemplate(os.Stdout, "index.tmpl", "World")
+	fmt.Println(http.ListFiles())
 }

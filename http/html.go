@@ -1,36 +1,29 @@
 package http
 
 import (
-	"html/template"
-	"io"
-
 	"fmt"
 
 	"github.com/gobuffalo/packr"
 )
 
 var (
-	assets    packr.Box
-	templates *template.Template
+	templateBox packr.Box
 )
 
 func init() {
-	assets = packr.NewBox("./assets")
-	templateBox := packr.NewBox("./templates")
-	templates = template.New("")
-
-	if len(templateBox.List()) == 0 {
-		fmt.Println("0 files in ./templates")
-	}
-
-	templateBox.Walk(func(s string, _ packr.File) error {
-		template.Must(templates.New(s).Parse(templateBox.String(s)))
-		return nil
-	})
+	templateBox = packr.NewBox("./templates")
+	fmt.Println("Init Function")
+	fmt.Printf("%d files in ./templates\n", len(templateBox.List()))
 }
 
-func RenderTemplate(w io.Writer, template string, data interface{}) {
-	if err := templates.ExecuteTemplate(w, template, data); err != nil {
-		fmt.Println(fmt.Errorf("error parsing template: %v", err))
-	}
+func ListFiles() string {
+	fmt.Println("ListFiles function")
+	s := "Files in box:\n"
+
+	templateBox.Walk(func(name string, f packr.File) error {
+		s += fmt.Sprintln(name)
+		return nil
+	})
+
+	return s
 }
