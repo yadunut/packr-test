@@ -61,7 +61,9 @@ cd packr-test
 ### Expected
 
 ```
+Init Function
 2 files in ./templates
+ListFiles function
 Files in box:
 index.tmpl
 register.tmpl
