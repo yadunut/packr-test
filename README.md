@@ -4,14 +4,16 @@ This repository was created to test out an error I got when using packr.
 
 ## Usage
 
+```Bash
 go get -d github.com/yadunut/packr-test/...
+```
 
 ## To test issue
 
 ```bash
 cd packr-test
 packr build cmd/server/main.go
-./main.go
+./main
 ```
 
 ### Expected
@@ -23,10 +25,9 @@ packr build cmd/server/main.go
 ```
 
 ```bash
-mv main ~/Desktop
 cd ..
 mv packr-test packr-tests
-cd ~/Desktop
+cd packr-tests
 ./main
 ```
 
