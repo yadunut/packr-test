@@ -18,6 +18,11 @@ func init() {
 	assets = packr.NewBox("./assets")
 	templateBox := packr.NewBox("./templates")
 	templates = template.New("")
+
+	if len(templateBox.List()) == 0 {
+		fmt.Println("0 files in ./templates")
+	}
+
 	templateBox.Walk(func(s string, _ packr.File) error {
 		template.Must(templates.New(s).Parse(templateBox.String(s)))
 		return nil
